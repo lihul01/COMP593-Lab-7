@@ -76,7 +76,7 @@ def populate_people_table():
 
     for _ in range(200):
 
-        new_person = (fake.first_name(),
+        new_person = (fake.name(),
                       fake.ascii_free_email(),
                       fake.street_address(),
                       fake.city(),
