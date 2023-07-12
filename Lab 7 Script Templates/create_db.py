@@ -49,9 +49,6 @@ def create_people_table():
 
 def populate_people_table():
     """Populates the people table with 200 fake people"""
-    # TODO: Create function body
-    # Hint: See example code in lab instructions entitled "Inserting Data into a Table"
-    # Hint: See example code in lab instructions entitled "Working with Faker"
     con = sqlite3.connect('social_network.db')
 
     cur = con.cursor()
