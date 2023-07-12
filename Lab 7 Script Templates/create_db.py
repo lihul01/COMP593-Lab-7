@@ -9,6 +9,7 @@ Usage:
 import os
 import sqlite3
 from datetime import datetime
+from faker import Faker
 
 # Determine the path of the database
 script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -52,7 +53,7 @@ def populate_people_table():
     # Hint: See example code in lab instructions entitled "Inserting Data into a Table"
     # Hint: See example code in lab instructions entitled "Working with Faker"
     con = sqlite3.connect('social_network.db')
-    
+
     cur = con.cursor()
 
     add_person_query = """
@@ -70,17 +71,22 @@ def populate_people_table():
         )
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
     """
-    new_person = ('Bob Loblaw',
-                  'bob.loblaw@whatever.net',
-                  '123 Fake St.',
-                  'Fakesville',
-                  'Fake Edward Island',
-                  'Enjoys making funny sounds when talking.',
-                  46,
-                  datetime.now(),
-                  datetime.now())
-    
-    cur.execute(add_person_query, new_person)
+
+    fake = Faker("en_CA")
+
+    for _ in range(200):
+
+        new_person = (fake.first_name(),
+                      fake.ascii_free_email(),
+                      fake.street_address(),
+                      fake.city(),
+                      fake.administrative_unit(),
+                      fake.sentence(nb_words=10),
+                      fake.random_int(min=1, max=100),
+                      datetime.now(),
+                      datetime.now())
+
+        cur.execute(add_person_query, new_person)
 
     con.commit()
 
