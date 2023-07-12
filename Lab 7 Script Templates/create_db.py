@@ -23,7 +23,7 @@ def create_people_table():
 
     cur = con.cursor()
 
-    create_ppl_tbl_query = """"
+    create_ppl_tbl_query = """
         CREATE TABLE IF NOT EXISTS people
         (
             id          INTEGER PRIMARY KEY,
@@ -35,7 +35,7 @@ def create_people_table():
             bio         TEXT,
             age         INTEGER,
             created_at  DATETIME NOT NULL,
-            updated_at  DATETIME NOT NULL,
+            updated_at  DATETIME NOT NULL
         );
     """
     cur.execute(create_ppl_tbl_query)
