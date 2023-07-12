@@ -8,6 +8,7 @@ Usage:
 """
 import os
 import sqlite3
+from datetime import datetime
 
 # Determine the path of the database
 script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -50,6 +51,40 @@ def populate_people_table():
     # TODO: Create function body
     # Hint: See example code in lab instructions entitled "Inserting Data into a Table"
     # Hint: See example code in lab instructions entitled "Working with Faker"
+    con = sqlite3.connect('social_network.db')
+    
+    cur = con.cursor()
+
+    add_person_query = """
+        INSERT INTO people
+        (
+            name,
+            email,
+            address,
+            city,
+            province,
+            bio,
+            age,
+            created_at,
+            updated_at
+        )
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
+    """
+    new_person = ('Bob Loblaw',
+                  'bob.loblaw@whatever.net',
+                  '123 Fake St.',
+                  'Fakesville',
+                  'Fake Edward Island',
+                  'Enjoys making funny sounds when talking.',
+                  46,
+                  datetime.now(),
+                  datetime.now())
+    
+    cur.execute(add_person_query, new_person)
+
+    con.commit()
+
+    con.close()
     return
 
 if __name__ == '__main__':
