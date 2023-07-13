@@ -9,7 +9,9 @@ Usage:
 import os
 from create_db import db_path, script_dir
 import sqlite3
-from pprint import pprint
+import pandas as pd
+from datetime import date
+import re
 
 def main():
     old_people_list = get_old_people()
@@ -54,8 +56,8 @@ def save_name_and_age_to_csv(name_and_age_list, csv_path):
         name_and_age_list (list): (name, age) of people
         csv_path (str): Path of CSV file
     """
-    # TODO: Create function body
-    # Hint: In Lab 3, we converted a list of tuples into a pandas DataFrame and saved it to a CSV file
+    df = pd.DataFrame(list(name_and_age_list))
+    df.to_csv(csv_path)
     return
 
 if __name__ == '__main__':
