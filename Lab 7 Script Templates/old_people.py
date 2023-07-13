@@ -34,7 +34,7 @@ def get_old_people():
     con.commit()
 
     con.close()
-    
+
     return old_people
 
 def print_name_and_age(name_and_age_list):
@@ -43,8 +43,8 @@ def print_name_and_age(name_and_age_list):
     Args:
         name_and_age_list (list): (name, age) of people
     """
-    # TODO: Create function body
-    # Hint: Use a for loop to iterate the list of tuples to print a sentence for each old person
+    for i in name_and_age_list:
+        print(f'{i[0]} is {i[1]} years old.')
     return
 
 def save_name_and_age_to_csv(name_and_age_list, csv_path):
